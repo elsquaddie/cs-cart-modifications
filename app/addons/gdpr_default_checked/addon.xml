@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<addon scheme="3.0">
+    <id>gdpr_default_checked</id>
+    <version>1.0</version>
+    <priority>900</priority>
+    <position>0</position>
+    <status>active</status>
+    <auto_install>true</auto_install>
+    <default_language>en</default_language>
+    <compatibility>
+        <dependencies>gdpr</dependencies>
+    </compatibility>
+    <settings>
+        <sections>
+            <section id="general">
+                <items>
+                    <item id="default_consent_value">
+                        <type>checkbox</type>
+                        <default_value>Y</default_value>
+                    </item>
+                </items>
+            </section>
+        </sections>
+    </settings>
+</addon>
