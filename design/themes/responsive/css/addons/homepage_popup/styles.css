@@ -1,0 +1,186 @@
+#homepage_popup_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    z-index: 9998; /* Below popup, above everything else */
+    display: none; /* Hidden by default, JS controls visibility */
+}
+
+#homepage_popup_wrapper {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 9999; /* Above overlay */
+    display: none; /* Hidden by default, JS controls visibility */
+    padding: 0; /* Reset padding, will be handled by inner content or slider area */
+    box-sizing: border-box;
+    /* overflow-y: auto; -- This will be handled by slide content area if needed */
+    /* Width and height are set inline from settings */
+}
+
+/* Slider Container - relative positioning for nav elements */
+#homepage_popup_slider_container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.hp-slides {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.hp-slide {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    display: none; /* JS will manage display:block for the active slide */
+}
+
+.hp-slide.active {
+    display: block; /* JS adds this class to the current slide */
+}
+
+/* Content area within a slide */
+.hp-slide-content-area {
+    padding: 20px 20px 50px 20px; /* Main padding for slide content, bottom padding for dots */
+    height: 100%;
+    overflow-y: auto;
+    box-sizing: border-box;
+    position:relative; /* For potential absolute positioning of elements within if needed */
+}
+
+.hp-slide-content-area h2 {
+    margin-top: 0;
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+
+.hp-slide .popup_image_container {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.hp-slide .popup_image_container img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+    max-height: calc(100% - 80px); /* Example: limit image height if other content exists */
+}
+
+.hp-slide .popup_text_content {
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+
+/* Slider Navigation Buttons */
+.hp-slider-nav {
+    /* This class is on the container of prev/next buttons */
+}
+
+.hp-prev,
+.hp-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    z-index: 10000; /* Above slides but below close button */
+    font-size: 16px;
+    border-radius: 3px;
+    transition: background-color 0.2s ease;
+}
+
+.hp-prev:hover,
+.hp-next:hover {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.hp-prev {
+    left: 15px; /* Adjusted padding from wrapper edge */
+}
+
+.hp-next {
+    right: 15px; /* Adjusted padding from wrapper edge */
+}
+
+/* Slider Dots Navigation */
+.hp-slider-dots {
+    position: absolute;
+    bottom: 15px; /* Position at the bottom of the slider_container */
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 5px 0;
+    z-index: 10000;
+}
+
+.hp-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #bbb;
+    border-radius: 50%;
+    margin: 0 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.hp-dot.active {
+    background-color: #717171;
+}
+
+/* Close button styling - ensure it's above everything */
+#close_homepage_popup {
+    position: absolute;
+    top: 5px; /* Closer to edge */
+    right: 5px; /* Closer to edge */
+    background: rgba(230, 230, 230, 0.8); /* Slightly transparent */
+    border: 1px solid #aaa;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    line-height: 28px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+    z-index: 10001; /* Highest z-index */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+#close_homepage_popup:hover {
+    background: rgba(221, 221, 221, 1);
+    transform: scale(1.1);
+}
+#close_homepage_popup:active {
+    transform: scale(0.95);
+}
+
+/* Legacy content area ID - ensure it doesn't conflict if still in TPL somehow */
+/* This was from the single-content version, slider uses .hp-slide-content-area now */
+#homepage_popup_content_area {
+    /* Styles here would apply if this ID is still used, but it should be superseded */
+}
+#homepage_popup_content_area h2 { /* From old structure, new is .hp-slide-content-area h2 */
+    margin-top: 0;
+    font-size: 1.5em;
+}
+
+/* These were from old structure, now scoped within .hp-slide */
+.popup_image_container { }
+.popup_text_content { }

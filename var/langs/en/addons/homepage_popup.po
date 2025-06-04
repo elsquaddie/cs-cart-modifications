@@ -1,0 +1,98 @@
+# Language: English
+# Add-on: homepage_popup
+
+msgctxt "homepage_popup.popup_title"
+msgid "Popup Title"
+msgstr "Popup Title"
+
+msgctxt "homepage_popup.popup_text_placeholder"
+msgid "This is the popup content."
+msgstr "This is the popup content."
+
+msgctxt "homepage_popup.close_button"
+msgid "Close"
+msgstr "Close"
+
+msgctxt "homepage_popup.settings.tab_general"
+msgid "General Settings"
+msgstr "General Settings"
+
+msgctxt "homepage_popup.settings.popup_width"
+msgid "Popup Width"
+msgstr "Popup Width"
+
+msgctxt "homepage_popup.settings.tooltip.popup_width"
+msgid "Set the width of the popup in pixels."
+msgstr "Set the width of the popup in pixels."
+
+msgctxt "homepage_popup.settings.popup_height"
+msgid "Popup Height"
+msgstr "Popup Height"
+
+msgctxt "homepage_popup.settings.tooltip.popup_height"
+msgid "Set the height of the popup in pixels (optional, content will scroll if it exceeds this)."
+msgstr "Set the height of the popup in pixels (optional, content will scroll if it exceeds this)."
+
+msgctxt "homepage_popup.settings.enable_background_dimming"
+msgid "Enable Background Dimming"
+msgstr "Enable Background Dimming"
+
+msgctxt "homepage_popup.settings.tooltip.enable_background_dimming"
+msgid "Check this to dim the background when the popup is active."
+msgstr "Check this to dim the background when the popup is active."
+
+msgctxt "homepage_popup.popup_title_default"
+msgid "Welcome!"
+msgstr "Welcome!"
+
+msgctxt "homepage_popup.addon_name"
+msgid "Homepage Popup"
+msgstr "Homepage Popup"
+
+msgctxt "homepage_popup.addon_description"
+msgid "Displays a customizable popup on the homepage."
+msgstr "Displays a customizable popup on the homepage."
+
+msgctxt "homepage_popup.manage_banners_button"
+msgid "Manage Banners"
+msgstr "Manage Banners"
+
+msgctxt "homepage_popup.add_banner_button"
+msgid "Add Banner"
+msgstr "Add Banner"
+
+msgctxt "homepage_popup.manage_banners_title"
+msgid "Manage Homepage Popup Banners"
+msgstr "Manage Homepage Popup Banners"
+
+msgctxt "homepage_popup.banner_saved_successfully"
+msgid "Banner saved successfully."
+msgstr "Banner saved successfully."
+
+msgctxt "homepage_popup.banner_save_error"
+msgid "Error saving banner."
+msgstr "Error saving banner."
+
+msgctxt "homepage_popup.banners_deleted_successfully"
+msgid "%d banners deleted successfully."
+msgstr "%d banners deleted successfully."
+
+msgctxt "homepage_popup.banner_deleted_successfully"
+msgid "Banner deleted successfully."
+msgstr "Banner deleted successfully."
+
+msgctxt "homepage_popup.settings.tab_banner_management"
+msgid "Banner Management"
+msgstr "Banner Management"
+
+msgctxt "homepage_popup.settings.tooltip.manage_banners_link"
+msgid "Click to manage the banners/slides for the homepage popup."
+msgstr "Click to manage the banners/slides for the homepage popup."
+
+msgctxt "homepage_popup.previous_slide"
+msgid "Previous"
+msgstr "Previous"
+
+msgctxt "homepage_popup.next_slide"
+msgid "Next"
+msgstr "Next"
