@@ -1607,10 +1607,20 @@ function fn_update_product($product_data, $product_id = 0, $lang_code = CART_LAN
      * @param bool   $create       Flag determines if product was created (true) or just updated (false).
      */
     fn_set_hook('update_product_post', $product_data, $product_id, $lang_code, $create);
+    // Логирование изменения количества товара при сохранении через админку
+    if (function_exists('_logWrite') && isset($product_data['amount'])) {
+        _logWrite([
+            'event' => 'fn_update_product (admin save)',
+            'product_id' => $product_id,
+            'new_amount' => $product_data['amount'],
+            'user_id' => isset($auth['user_id']) ? $auth['user_id'] : null,
+            'request_uri' => isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : null,
+            'backtrace' => debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 5),
+        ]);
+    }
 
     return (int) $product_id;
 }
-
 /**
  * Gets products list by search params
  *

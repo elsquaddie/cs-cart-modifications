@@ -1,0 +1,39 @@
+[06-04-2025 12:37:48.845866] </admin.php> array (
+  'event' => 'fn_update_product (admin save)',
+  'product_id' => '12',
+  'new_amount' => '14',
+  'user_id' => NULL,
+  'request_uri' => '/admin.php',
+  'backtrace' => 
+  array (
+    0 => 
+    array (
+      'file' => '/var/www/latest/mve/app/controllers/backend/products.php',
+      'line' => 91,
+      'function' => 'fn_update_product',
+    ),
+    1 => 
+    array (
+      'file' => '/var/www/latest/mve/app/functions/fn.control.php',
+      'line' => 727,
+      'args' => 
+      array (
+        0 => '/var/www/latest/mve/app/controllers/backend/products.php',
+      ),
+      'function' => 'include',
+    ),
+    2 => 
+    array (
+      'file' => '/var/www/latest/mve/app/functions/fn.control.php',
+      'line' => 458,
+      'function' => 'fn_run_controller',
+    ),
+    3 => 
+    array (
+      'file' => '/var/www/latest/mve/admin.php',
+      'line' => 21,
+      'function' => 'fn_dispatch',
+    ),
+  ),
+) 
+ 

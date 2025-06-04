@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/local_conf.php';
+test_logwrite_debug();
 /***************************************************************************
 *                                                                          *
 *   (c) 2004 Vladimir V. Kalynyak, Alexey V. Vinokurov, Ilya M. Shalnev    *

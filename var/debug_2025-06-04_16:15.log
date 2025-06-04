@@ -1,0 +1,56 @@
+[06-04-2025 12:15:43.592123] </index.php?dispatch=index.index&s_layout=1&skey=37996649873634955814> array (
+  'event' => 'test_logwrite_debug',
+  'time' => '2025-06-04 16:15:43',
+  'backtrace' => 
+  array (
+    0 => 
+    array (
+      'file' => '/var/www/latest/mve/index.php',
+      'line' => 3,
+      'function' => 'test_logwrite_debug',
+    ),
+  ),
+) 
+ 
+[06-04-2025 12:15:43.656195] </?s_layout=1&skey=37996649873634955814> array (
+  'event' => 'test_logwrite_debug',
+  'time' => '2025-06-04 16:15:43',
+  'backtrace' => 
+  array (
+    0 => 
+    array (
+      'file' => '/var/www/latest/mve/index.php',
+      'line' => 3,
+      'function' => 'test_logwrite_debug',
+    ),
+  ),
+) 
+ 
+[06-04-2025 12:15:43.861724] </?s_layout=1> array (
+  'event' => 'test_logwrite_debug',
+  'time' => '2025-06-04 16:15:43',
+  'backtrace' => 
+  array (
+    0 => 
+    array (
+      'file' => '/var/www/latest/mve/index.php',
+      'line' => 3,
+      'function' => 'test_logwrite_debug',
+    ),
+  ),
+) 
+ 
+[06-04-2025 12:15:48.617412] </index.php?dispatch=theme_editor.view&theme_url=http%3A%2F%2Fmve%2F%3Fs_layout%3D1&query_string=s_layout%253D1&result_ids=theme_editor&is_ajax=1> array (
+  'event' => 'test_logwrite_debug',
+  'time' => '2025-06-04 16:15:48',
+  'backtrace' => 
+  array (
+    0 => 
+    array (
+      'file' => '/var/www/latest/mve/index.php',
+      'line' => 3,
+      'function' => 'test_logwrite_debug',
+    ),
+  ),
+) 
+ 

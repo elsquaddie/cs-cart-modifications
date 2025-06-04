@@ -741,6 +741,53 @@ function fn_import($pattern, $import_data, $options)
 
             if ($object_exists == true) {
                 fn_set_progress('echo', __('updating') . ' ' . $pattern['name'] . ' <b>' . implode(',', $primary_object_id) . '</b>. ', false);
+                // Получаем старое значение остатка до обновления
+                $old_amount = null;
+                $product_id_for_log = isset($primary_object_id['product_id']) ? $primary_object_id['product_id'] : null;
+                if ($pattern['table'] === 'products' && $product_id_for_log) {
+                    $old_amount = db_get_field('SELECT amount FROM ?:products WHERE product_id = ?i', $product_id_for_log);
+                }
+                db_query('UPDATE ?:' . $pattern['table'] . ' SET ?u WHERE ?w', $v[$main_lang], $primary_object_id);
+                // Логируем изменение остатков, если поле amount есть в импортируемых данных
+                if ($pattern['table'] === 'products' && $product_id_for_log && array_key_exists('amount', $v[$main_lang])) {
+                    $new_amount = $v[$main_lang]['amount'];
+                    $user_id = isset($_SESSION['auth']['user_id']) ? $_SESSION['auth']['user_id'] : null;
+                    $username = isset($_SESSION['auth']['user_id']) ? db_get_field('SELECT user_login FROM ?:users WHERE user_id = ?i', $_SESSION['auth']['user_id']) : null;
+                    $request_uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : null;
+                    $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 7);
+                    if (function_exists('_logWrite')) {
+                        _logWrite([
+                            'event' => 'import_update_amount',
+                            'product_id' => $product_id_for_log,
+                            'old_amount' => $old_amount,
+                            'new_amount' => $new_amount,
+                            'delta' => is_numeric($old_amount) && is_numeric($new_amount) ? ($new_amount - $old_amount) : null,
+                            'user_id' => $user_id,
+                            'username' => $username,
+                            'request_uri' => $request_uri,
+                            'import_source' => 'exim',
+                            'import_row' => $v[$main_lang],
+                            'backtrace' => $backtrace
+                        ]);
+                    }
+                }
+            } else {
+                $processed_data['N']++;
+
+                // For new objects - fill the default values
+                if (!empty($default_groups)) {
+                    foreach ($default_groups as $field => $value) {
+                        foreach ($v as $lang => $import_field) {
+                            if (empty($import_field[$field])) {
+                                $v[$lang][$field] = $value;
+                            }
+                        }
+                    }
+                }
+            }
+
+            if ($object_exists == true) {
+                fn_set_progress('echo', __('updating') . ' ' . $pattern['name'] . ' <b>' . implode(',', $primary_object_id) . '</b>. ', false);
                 db_query('UPDATE ?:' . $pattern['table'] . ' SET ?u WHERE ?w', $v[$main_lang], $primary_object_id);
             } else {
                 $o_id = db_query('INSERT INTO ?:' . $pattern['table'] . ' ?e', $v[$main_lang]);

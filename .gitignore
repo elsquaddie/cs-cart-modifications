@@ -1,8 +1,12 @@
 /config.local.php
 /config.php
 /images/
-/js/
-/var/
+/var/cache
+/var/backups
+/var/files
+/var/restore
+/var/upgrade
 /ent.php
 /sph4.php
 /local_conf.php
+/error_log

@@ -1,0 +1,51 @@
+[06-04-2025 12:56:03.156130] </admin.php> array (
+  'event' => 'import_update_amount',
+  'product_id' => '12',
+  'old_amount' => '16',
+  'new_amount' => '17',
+  'delta' => 1,
+  'user_id' => 1,
+  'username' => 'admin',
+  'request_uri' => '/admin.php',
+  'import_source' => 'exim',
+  'import_row' => 
+  array (
+    'product_code' => 'U0012O5AF0',
+    'lang_code' => 'en',
+    'company' => 'CS-Cart',
+    'amount' => '17',
+    'updated_timestamp' => 1749041762,
+  ),
+  'backtrace' => 
+  array (
+    0 => 
+    array (
+      'file' => '/var/www/latest/mve/app/controllers/backend/exim.php',
+      'line' => 196,
+      'function' => 'fn_import',
+    ),
+    1 => 
+    array (
+      'file' => '/var/www/latest/mve/app/functions/fn.control.php',
+      'line' => 727,
+      'args' => 
+      array (
+        0 => '/var/www/latest/mve/app/controllers/backend/exim.php',
+      ),
+      'function' => 'include',
+    ),
+    2 => 
+    array (
+      'file' => '/var/www/latest/mve/app/functions/fn.control.php',
+      'line' => 458,
+      'function' => 'fn_run_controller',
+    ),
+    3 => 
+    array (
+      'file' => '/var/www/latest/mve/admin.php',
+      'line' => 21,
+      'function' => 'fn_dispatch',
+    ),
+  ),
+) 
+ 

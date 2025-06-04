@@ -1051,9 +1051,25 @@ function fn_update_product_amount($product_id, $amount_delta, $product_options, 
         return true;
     }
 
+
     $product = db_get_row('SELECT amount, product_code FROM ?:products WHERE product_id = ?i', $product_id);
     $current_amount = $original_amount = $product['amount'];
     $product_code = $product['product_code'];
+
+    if (function_exists('_logWrite')) {
+        _logWrite([
+            'event' => 'fn_update_product_amount',
+            'product_id' => $product_id,
+            'current_amount' => $current_amount,
+            'amount_delta' => $amount_delta,
+            'new_amount' => isset($new_amount) ? $new_amount : null,
+            'sign' => $sign,
+            'user_id' => isset($auth['user_id']) ? $auth['user_id'] : null,
+            'request_uri' => isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : null,
+            'order_info' => isset($order_info) ? $order_info : null,
+            'backtrace' => debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 5),
+        ]);
+    }
 
     /**
      * Executed before the quantity of the product in stock is updated.
