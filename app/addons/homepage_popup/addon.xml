@@ -21,16 +21,22 @@
     <compatibility>
         <dependencies></dependencies>
     </compatibility>
-    <database>
-        <table name="homepage_popup_banners">
-            <item><name>banner_id</name><type>int(11) unsigned</type><auto_increment>Y</auto_increment><primary_key>Y</primary_key></item>
-            <item><name>title</name><type>varchar(255)</type><default_value></default_value></item>
-            <item><name>content</name><type>text</type><default_value></default_value></item>
-            <item><name>position</name><type>int(11) unsigned</type><default_value>0</default_value></item>
-            <item><name>status</name><type>char(1)</type><default_value>A</default_value></item>
-            <item><name>lang_code</name><type>char(2)</type><default_value>en</default_value></item>
-        </table>
-    </database>
+    <queries>
+        <item for="install">
+            CREATE TABLE IF NOT EXISTS `?:homepage_popup_banners` (
+                `banner_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+                `title` varchar(255) NOT NULL DEFAULT '',
+                `content` text NOT NULL,
+                `position` int(11) unsigned NOT NULL DEFAULT 0,
+                `status` char(1) NOT NULL DEFAULT 'A',
+                `lang_code` char(2) NOT NULL DEFAULT 'en',
+                PRIMARY KEY (`banner_id`)
+            ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+        </item>
+        <item for="uninstall">
+            DROP TABLE IF EXISTS `?:homepage_popup_banners`;
+        </item>
+    </queries>
     <settings layout="separate" edition_type="ROOT,ULT:VENDOR">
         <sections>
             <section id="general">

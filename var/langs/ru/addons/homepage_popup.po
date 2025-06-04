@@ -81,13 +81,9 @@ msgctxt "homepage_popup.banner_deleted_successfully"
 msgid "Banner deleted successfully."
 msgstr "Баннер успешно удален."
 
-msgctxt "homepage_popup.settings.tab_banner_management"
-msgid "Banner Management"
-msgstr "Управление баннерами"
-
-msgctxt "homepage_popup.settings.tooltip.manage_banners_link"
-msgid "Click to manage the banners/slides for the homepage popup."
-msgstr "Нажмите для управления баннерами/слайдами всплывающего окна."
+msgctxt "homepage_popup.marketing_menu_title"
+msgid "Homepage Popups"
+msgstr "Всплывающие окна (главная)"
 
 msgctxt "homepage_popup.previous_slide"
 msgid "Previous"
