@@ -1,6 +1,5 @@
 # Language: English
 # Add-on: homepage_popup
-
 msgctxt "homepage_popup.popup_title"
 msgid "Popup Title"
 msgstr "Popup Title"
@@ -81,13 +80,9 @@ msgctxt "homepage_popup.banner_deleted_successfully"
 msgid "Banner deleted successfully."
 msgstr "Banner deleted successfully."
 
-msgctxt "homepage_popup.settings.tab_banner_management"
-msgid "Banner Management"
-msgstr "Banner Management"
-
-msgctxt "homepage_popup.settings.tooltip.manage_banners_link"
-msgid "Click to manage the banners/slides for the homepage popup."
-msgstr "Click to manage the banners/slides for the homepage popup."
+msgctxt "homepage_popup.marketing_menu_title"
+msgid "Homepage Popups"
+msgstr "Homepage Popups"
 
 msgctxt "homepage_popup.previous_slide"
 msgid "Previous"
