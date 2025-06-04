@@ -3,20 +3,26 @@
     <id>gdpr_default_checked</id>
     <version>1.0</version>
     <priority>900</priority>
-    <position>0</position>
+    <position>100</position>
     <status>active</status>
-    <auto_install>true</auto_install>
-    <default_language>en</default_language>
+    <auto_install>true</auto_install> <!-- CS-Cart specific, not standard XML boolean -->
+    <default_language>EN</default_language>
+    <name>GDPR Default Checked</name> <!-- Will be replaced by lang var -->
+    <description>Makes the GDPR consent checkbox ticked by default.</description> <!-- Will be replaced by lang var -->
+
     <compatibility>
         <dependencies>gdpr</dependencies>
     </compatibility>
+
     <settings>
         <sections>
             <section id="general">
+                <name>General</name> <!-- This can be a lang var too, e.g., settings_section.general -->
                 <items>
                     <item id="default_consent_value">
                         <type>checkbox</type>
                         <default_value>Y</default_value>
+                        <!-- Name and tooltip for this setting will be language variables -->
                     </item>
                 </items>
             </section>
