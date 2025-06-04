@@ -1,0 +1,98 @@
+# Language: Russian
+# Add-on: homepage_popup
+
+msgctxt "homepage_popup.popup_title"
+msgid "Popup Title"
+msgstr "Заголовок окна"
+
+msgctxt "homepage_popup.popup_text_placeholder"
+msgid "This is the popup content."
+msgstr "Это содержимое всплывающего окна."
+
+msgctxt "homepage_popup.close_button"
+msgid "Close"
+msgstr "Закрыть"
+
+msgctxt "homepage_popup.settings.tab_general"
+msgid "General Settings"
+msgstr "Основные настройки"
+
+msgctxt "homepage_popup.settings.popup_width"
+msgid "Popup Width"
+msgstr "Ширина всплывающего окна"
+
+msgctxt "homepage_popup.settings.tooltip.popup_width"
+msgid "Set the width of the popup in pixels."
+msgstr "Установите ширину всплывающего окна в пикселях."
+
+msgctxt "homepage_popup.settings.popup_height"
+msgid "Popup Height"
+msgstr "Высота всплывающего окна"
+
+msgctxt "homepage_popup.settings.tooltip.popup_height"
+msgid "Set the height of the popup in pixels (optional, content will scroll if it exceeds this)."
+msgstr "Установите высоту всплывающего окна в пикселях (необязательно, содержимое будет прокручиваться, если оно превысит это значение)."
+
+msgctxt "homepage_popup.settings.enable_background_dimming"
+msgid "Enable Background Dimming"
+msgstr "Включить затемнение фона"
+
+msgctxt "homepage_popup.settings.tooltip.enable_background_dimming"
+msgid "Check this to dim the background when the popup is active."
+msgstr "Отметьте это, чтобы затемнить фон, когда активно всплывающее окно."
+
+msgctxt "homepage_popup.popup_title_default"
+msgid "Welcome!"
+msgstr "Добро пожаловать!"
+
+msgctxt "homepage_popup.addon_name"
+msgid "Homepage Popup"
+msgstr "Всплывающее окно на главной"
+
+msgctxt "homepage_popup.addon_description"
+msgid "Displays a customizable popup on the homepage."
+msgstr "Отображает настраиваемое всплывающее окно на главной странице."
+
+msgctxt "homepage_popup.manage_banners_button"
+msgid "Manage Banners"
+msgstr "Управление баннерами"
+
+msgctxt "homepage_popup.add_banner_button"
+msgid "Add Banner"
+msgstr "Добавить баннер"
+
+msgctxt "homepage_popup.manage_banners_title"
+msgid "Manage Homepage Popup Banners"
+msgstr "Управление баннерами всплывающего окна"
+
+msgctxt "homepage_popup.banner_saved_successfully"
+msgid "Banner saved successfully."
+msgstr "Баннер успешно сохранен."
+
+msgctxt "homepage_popup.banner_save_error"
+msgid "Error saving banner."
+msgstr "Ошибка сохранения баннера."
+
+msgctxt "homepage_popup.banners_deleted_successfully"
+msgid "%d banners deleted successfully."
+msgstr "Успешно удалено %d баннеров."
+
+msgctxt "homepage_popup.banner_deleted_successfully"
+msgid "Banner deleted successfully."
+msgstr "Баннер успешно удален."
+
+msgctxt "homepage_popup.settings.tab_banner_management"
+msgid "Banner Management"
+msgstr "Управление баннерами"
+
+msgctxt "homepage_popup.settings.tooltip.manage_banners_link"
+msgid "Click to manage the banners/slides for the homepage popup."
+msgstr "Нажмите для управления баннерами/слайдами всплывающего окна."
+
+msgctxt "homepage_popup.previous_slide"
+msgid "Previous"
+msgstr "Назад"
+
+msgctxt "homepage_popup.next_slide"
+msgid "Next"
+msgstr "Вперед"
