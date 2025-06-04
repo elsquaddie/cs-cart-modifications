@@ -62,30 +62,51 @@ function fn_homepage_popup_get_banners($params = array(), $items_per_page = 0, $
         'status' => '?:homepage_popup_banners.status'
     );
 
-    $condition = $limit = '';
+    $sortings = array(
+        'title' => '?:homepage_popup_banners.title',
+        'position' => '?:homepage_popup_banners.position',
+        'status' => '?:homepage_popup_banners.status'
+    );
 
-    // Add lang_code condition for all queries related to this table if it has lang_code column
-    $condition .= db_quote(" AND lang_code = ?s", $lang_code);
+    $condition_parts = array(); // Array to hold parts of the WHERE clause
+    $limit = '';
+
+    // Language condition
+    $condition_parts[] = db_quote("lang_code = ?s", $lang_code);
 
     if (!empty($params['item_ids'])) {
-        $condition .= db_quote(" AND banner_id IN (?n)", explode(',', $params['item_ids']));
+        $item_ids_array = explode(',', $params['item_ids']);
+        $condition_parts[] = db_quote("banner_id IN (?n)", $item_ids_array);
     }
 
-    $sorting = db_sort($params, $sortings, 'position', 'asc');
+    // Add other conditions to $condition_parts as needed, for example:
+    // if (!empty($params['status'])) {
+    //     $condition_parts[] = db_quote("status = ?s", $params['status']);
+    // }
+
+    $condition = '';
+    if (!empty($condition_parts)) {
+        $condition = " WHERE " . implode(" AND ", $condition_parts);
+    }
+    // If $condition_parts is empty, $condition remains empty, resulting in "SELECT * FROM table ORDER BY ... LIMIT ..."
+    // If you always need a WHERE clause (e.g. for security, or if lang_code is mandatory), ensure $condition_parts is never empty
+    // or add a "WHERE 1" if $condition is empty. Given lang_code is always added, it won't be empty.
+
+    $sorting = db_sort($params, $sortings, 'position', 'asc'); // $sorting is "ORDER BY field dir"
 
     if (!empty($params['items_per_page'])) {
-        // Apply lang_code to total_items query
-        $params['total_items'] = db_get_field("SELECT COUNT(*) FROM ?:homepage_popup_banners WHERE 1 $condition");
+        $count_query = "SELECT COUNT(*) FROM ?:homepage_popup_banners $condition";
+        $params['total_items'] = db_get_field($count_query);
         $limit = db_paginate($params['page'], $params['items_per_page'], $params['total_items']);
     }
 
-    $banners = db_get_array(
-        "SELECT * FROM ?:homepage_popup_banners "
-        . "WHERE 1 $condition " // lang_code is already part of $condition
-        . "ORDER BY $sorting $limit"
-    );
+    $query = "SELECT * FROM ?:homepage_popup_banners $condition $sorting $limit";
 
-    foreach ($banners as &$banner) {
+    $banners = db_get_array($query);
+
+    // Get images
+    if (!empty($banners)) {
+        foreach ($banners as &$banner) {
         $banner['main_pair'] = fn_get_image_pairs($banner['banner_id'], 'homepage_popup_banner', 'M', true, true, $lang_code);
     }
 
