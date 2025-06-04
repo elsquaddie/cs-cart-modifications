@@ -53,4 +53,9 @@
         {/capture}
     </form>
 {/capture}
-{include file="common/mainbox.tpl" title=($banner_data.banner_id ? $banner_data.title : __("homepage_popup.add_banner_button")) content=$smarty.capture.mainbox buttons=$smarty.capture.buttons_block}
+{if $banner_data.banner_id}
+    {assign var="mainbox_title_text" value=$banner_data.title}
+{else}
+    {assign var="mainbox_title_text" value=__("homepage_popup.add_banner_button")}
+{/if}
+{include file="common/mainbox.tpl" title=$mainbox_title_text content=$smarty.capture.mainbox buttons=$smarty.capture.buttons_block}
