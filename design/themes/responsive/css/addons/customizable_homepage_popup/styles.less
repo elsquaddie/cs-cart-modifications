@@ -1,0 +1,174 @@
+// Customizable Homepage Popup Styles
+
+// Overlay
+#customizable_homepage_popup_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); // Default dimming
+    z-index: 9998;
+    display: none; // Initially hidden
+}
+
+// Wrapper
+#customizable_homepage_popup_wrapper {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    display: none; // Initially hidden by default, JS controls display
+    overflow-y: auto; // For scrollable content if height is fixed
+    max-height: 90vh; // Max height relative to viewport
+    max-width: 90vw;  // Max width relative to viewport
+
+    // Default dimensions if not overridden by JS
+    // Width & Height will be set by JS based on settings,
+    // but good to have some fallback or use these for max/min if needed.
+    // For example: min-width: 300px;
+
+    h3 {
+        margin-top: 0;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
+        margin-bottom: 15px;
+        font-size: 1.5em;
+    }
+}
+
+// Close Button
+#close_customizable_homepage_popup {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: 0.2;
+    cursor: pointer;
+    padding: 0;
+
+    &:hover {
+        opacity: 0.5;
+    }
+}
+
+// Slider Container
+#customizable_homepage_popup_slider_container {
+    .hp-slide {
+        // Styles for individual slides
+        img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+        div { // Content from WYSIWYG
+            line-height: 1.6;
+        }
+    }
+
+    .hp-slider-nav {
+        text-align: center;
+        margin-top: 20px;
+        button {
+            margin: 0 5px;
+            padding: 8px 12px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+            &:hover {
+                background-color: #e0e0e0;
+            }
+        }
+    }
+
+    .hp-slider-dots {
+        text-align: center;
+        margin-top: 10px;
+        .hp-dot {
+            cursor: pointer;
+            height: 12px;
+            width: 12px;
+            margin: 0 3px;
+            background-color: #ccc;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+            &.active {
+                background-color: #777;
+            }
+        }
+    }
+}
+
+// Animation base states (JS will add/remove classes or animate directly)
+// Example for a fade-in (can be done purely with JS .fadeIn())
+// .chp-fade-in { animation: chp-fade 0.5s ease-out; }
+// @keyframes chp-fade { from { opacity: 0; } to { opacity: 1; } }
+
+// Example for slide-from-top (JS will handle initial position and animate 'top')
+// Or, use CSS transitions by adding a class:
+// #customizable_homepage_popup_wrapper {
+//    transition: top 0.5s ease-out, opacity 0.5s ease-out;
+//    &.chp-slide-top-initial { top: -100%; opacity: 0; }
+//    &.chp-slide-top-active { top: 50%; opacity: 1; }
+// }
+
+
+// Responsive Adjustments
+@media (max-width: 767px) {
+    #customizable_homepage_popup_wrapper {
+        padding: 15px;
+        // Ensure it's not too wide on mobile, JS will set width but CSS can enforce max-width
+        // max-width: 90vw; // Already set above, good.
+        // max-height: 80vh; // Already set above
+
+        h3 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+    }
+
+    #close_customizable_homepage_popup {
+        font-size: 24px;
+        top: 5px;
+        right: 10px;
+    }
+
+    #customizable_homepage_popup_slider_container {
+        .hp-slider-nav {
+            margin-top: 15px;
+            button {
+                padding: 6px 10px;
+                font-size: 0.9em;
+            }
+        }
+        .hp-slider-dots {
+            margin-top: 8px;
+            .hp-dot {
+                height: 10px;
+                width: 10px;
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    #customizable_homepage_popup_wrapper {
+        // Further adjustments for very small screens if needed
+        // For example, reducing padding more, or ensuring full width if desired
+        // width: 95vw !important; // Example if JS sets % that's too large
+    }
+}

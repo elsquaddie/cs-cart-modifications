@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <addon scheme="3.0">
-    <id>homepage_popup</id>
-    <name language_variable="homepage_popup.addon_name">Homepage Popup</name>
-    <description language_variable="homepage_popup.addon_description">Displays a customizable popup on the homepage.</description>
-    <version>1.0</version>
+    <id>customizable_homepage_popup</id>
+    <name language_variable="customizable_homepage_popup.addon_name">Customizable Homepage Popup</name>
+    <description language_variable="customizable_homepage_popup.addon_description">Displays a highly configurable popup window on the homepage with user-defined content, delay, and display frequency.</description>
+    <version>1.0.0</version>
     <priority>100</priority>
     <position>0</position>
     <status>active</status>
@@ -23,7 +23,7 @@
     </compatibility>
     <queries>
         <item for="install">
-            CREATE TABLE IF NOT EXISTS `?:homepage_popup_banners` (
+            CREATE TABLE IF NOT EXISTS `?:customizable_homepage_popup_banners` (
                 `banner_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
                 `title` varchar(255) NOT NULL DEFAULT '',
                 `content` text NOT NULL,
@@ -34,17 +34,17 @@
             ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
         </item>
         <item for="uninstall">
-            DROP TABLE IF EXISTS `?:homepage_popup_banners`;
+            DROP TABLE IF EXISTS `?:customizable_homepage_popup_banners`;
         </item>
     </queries>
     <settings layout="separate" edition_type="ROOT,ULT:VENDOR">
         <sections>
             <section id="general">
-                <name language_variable="homepage_popup.settings.tab_general">General</name>
+                <name language_variable="customizable_homepage_popup.settings.tab_general">General</name>
                 <!-- Items are defined in schema.php -->
             </section>
              <section id="banner_management">
-                <name language_variable="homepage_popup.settings.tab_banner_management">Banner Management</name>
+                <name language_variable="customizable_homepage_popup.settings.tab_banner_management">Banner Management</name>
                 <!-- Items are defined in schema.php -->
             </section>
         </sections>
