@@ -16,23 +16,31 @@ use Tygh\Tygh;
  * @param array $params The request parameters.
  * @param string $lang_code The language code for the current context (CART_LANGUAGE on storefront).
  */
-function fn_homepage_popup_index_post($controller, $mode, $action, $dispatch_extra, $params, $lang_code)
+function fn_customizable_homepage_popup_index_post($controller, $mode, $action, $dispatch_extra, $params, $lang_code)
 {
     if (AREA == 'C' && $controller == 'index' && $mode == 'index') {
-        $popup_closed_cookie = !empty($_COOKIE['homepage_popup_closed']) && $_COOKIE['homepage_popup_closed'] === 'true';
+        $frequency = Registry::get('addons.customizable_homepage_popup.frequency');
+        $popup_closed_cookie = !empty($_COOKIE['customizable_homepage_popup_closed']) && $_COOKIE['customizable_homepage_popup_closed'] === 'true';
 
-        if (empty(Session::get('homepage_popup_shown')) && !$popup_closed_cookie) {
+        if ($frequency === 'every_visit') {
+            Session::set('customizable_homepage_popup_shown', false); // Ensure session doesn't block for 'every_visit'
+        }
+
+        if (empty(Session::get('customizable_homepage_popup_shown')) && !$popup_closed_cookie) {
             // Use the $lang_code from the hook, which is CART_LANGUAGE on storefront
-            $active_banners = fn_homepage_popup_get_active_banners($lang_code);
+            $active_banners = fn_customizable_homepage_popup_get_active_banners($lang_code);
             if (!empty($active_banners)) {
-                Registry::get('view')->assign('homepage_popup_banners', $active_banners);
-                Registry::get('view')->assign('show_homepage_popup', true);
-                Session::set('homepage_popup_shown', true);
+                Registry::get('view')->assign('customizable_homepage_popup_banners', $active_banners);
+                Registry::get('view')->assign('show_customizable_homepage_popup', true);
+                if ($frequency === 'once_per_session' || $frequency === 'once_daily') {
+                    Session::set('customizable_homepage_popup_shown', true);
+                }
             } else {
-                Registry::get('view')->assign('show_homepage_popup', false);
+                Registry::get('view')->assign('show_customizable_homepage_popup', false);
             }
         } else {
-            Registry::get('view')->assign('show_homepage_popup', false);
+            // If session shown is true (for once_per_session/once_daily) or cookie is set, don't show.
+            Registry::get('view')->assign('show_customizable_homepage_popup', false);
         }
     }
 }
@@ -45,7 +53,7 @@ function fn_homepage_popup_index_post($controller, $mode, $action, $dispatch_ext
  * @param string $lang_code Language code (typically DESPATCH_LANG_CODE for backend).
  * @return array An array containing the list of banners and search parameters.
  */
-function fn_homepage_popup_get_banners($params = array(), $items_per_page = 0, $lang_code = DESPATCH_LANG_CODE)
+function fn_customizable_homepage_popup_get_banners($params = array(), $items_per_page = 0, $lang_code = DESPATCH_LANG_CODE)
 {
     $default_params = array(
         'page' => 1,
@@ -57,15 +65,9 @@ function fn_homepage_popup_get_banners($params = array(), $items_per_page = 0, $
     $params = array_merge($default_params, $params);
 
     $sortings = array(
-        'title' => '?:homepage_popup_banners.title',
-        'position' => '?:homepage_popup_banners.position',
-        'status' => '?:homepage_popup_banners.status'
-    );
-
-    $sortings = array(
-        'title' => '?:homepage_popup_banners.title',
-        'position' => '?:homepage_popup_banners.position',
-        'status' => '?:homepage_popup_banners.status'
+        'title' => '?:customizable_homepage_popup_banners.title',
+        'position' => '?:customizable_homepage_popup_banners.position',
+        'status' => '?:customizable_homepage_popup_banners.status'
     );
 
     $condition_parts = array(); // Array to hold parts of the WHERE clause
@@ -95,19 +97,19 @@ function fn_homepage_popup_get_banners($params = array(), $items_per_page = 0, $
     $sorting = db_sort($params, $sortings, 'position', 'asc'); // $sorting is "ORDER BY field dir"
 
     if (!empty($params['items_per_page'])) {
-        $count_query = "SELECT COUNT(*) FROM ?:homepage_popup_banners $condition";
+        $count_query = "SELECT COUNT(*) FROM ?:customizable_homepage_popup_banners $condition";
         $params['total_items'] = db_get_field($count_query);
         $limit = db_paginate($params['page'], $params['items_per_page'], $params['total_items']);
     }
 
-    $query = "SELECT * FROM ?:homepage_popup_banners $condition $sorting $limit";
+    $query = "SELECT * FROM ?:customizable_homepage_popup_banners $condition $sorting $limit";
 
     $banners = db_get_array($query);
 
     // Get images
     if (!empty($banners)) {
         foreach ($banners as &$banner) {
-        $banner['main_pair'] = fn_get_image_pairs($banner['banner_id'], 'homepage_popup_banner', 'M', true, true, $lang_code);
+        $banner['main_pair'] = fn_get_image_pairs($banner['banner_id'], 'customizable_homepage_popup_banner', 'M', true, true, $lang_code);
     }
 
     return array($banners, $params);
@@ -120,16 +122,16 @@ function fn_homepage_popup_get_banners($params = array(), $items_per_page = 0, $
  * @param string $lang_code Language code (typically DESPATCH_LANG_CODE for backend).
  * @return array The banner data.
  */
-function fn_homepage_popup_get_banner_data($banner_id, $lang_code = DESPATCH_LANG_CODE)
+function fn_customizable_homepage_popup_get_banner_data($banner_id, $lang_code = DESPATCH_LANG_CODE)
 {
     $banner = array();
     if (!empty($banner_id)) {
-        $banner = db_get_row("SELECT * FROM ?:homepage_popup_banners WHERE banner_id = ?i AND lang_code = ?s", $banner_id, $lang_code);
+        $banner = db_get_row("SELECT * FROM ?:customizable_homepage_popup_banners WHERE banner_id = ?i AND lang_code = ?s", $banner_id, $lang_code);
 
         // Fallback: if no banner for the specified lang_code, try to get data from any other language for this banner_id
         // This might be useful if you want to create a new language version based on an existing one.
         if (empty($banner)) {
-            $any_lang_banner = db_get_row("SELECT * FROM ?:homepage_popup_banners WHERE banner_id = ?i", $banner_id);
+            $any_lang_banner = db_get_row("SELECT * FROM ?:customizable_homepage_popup_banners WHERE banner_id = ?i", $banner_id);
             if (!empty($any_lang_banner)) {
                 // Return the existing data but clear content fields that need translation and set the target lang_code
                 $banner = $any_lang_banner;
@@ -142,7 +144,7 @@ function fn_homepage_popup_get_banner_data($banner_id, $lang_code = DESPATCH_LAN
 
         if (!empty($banner)) {
              // Fetch image pair for the target $lang_code
-             $banner['main_pair'] = fn_get_image_pairs($banner_id, 'homepage_popup_banner', 'M', true, true, $lang_code);
+             $banner['main_pair'] = fn_get_image_pairs($banner_id, 'customizable_homepage_popup_banner', 'M', true, true, $lang_code);
         }
     }
     return $banner;
@@ -156,7 +158,7 @@ function fn_homepage_popup_get_banner_data($banner_id, $lang_code = DESPATCH_LAN
  * @param string $lang_code Language code for the content (typically DESPATCH_LANG_CODE for backend).
  * @return int|false The ID of the updated/created banner, or false on failure.
  */
-function fn_homepage_popup_update_banner($data, $banner_id, $lang_code = DESPATCH_LANG_CODE)
+function fn_customizable_homepage_popup_update_banner($data, $banner_id, $lang_code = DESPATCH_LANG_CODE)
 {
     if (empty($data)) {
         return false;
@@ -167,24 +169,24 @@ function fn_homepage_popup_update_banner($data, $banner_id, $lang_code = DESPATC
 
     if (empty($banner_id)) {
         // Create new banner - banner_id will be auto-incremented
-        $banner_id = db_query("INSERT INTO ?:homepage_popup_banners ?e", $data);
+        $banner_id = db_query("INSERT INTO ?:customizable_homepage_popup_banners ?e", $data);
     } else {
         // Update existing banner for the given banner_id and lang_code
         // Check if a record for this banner_id and lang_code already exists
-        $exists = db_get_field("SELECT COUNT(*) FROM ?:homepage_popup_banners WHERE banner_id = ?i AND lang_code = ?s", $banner_id, $lang_code);
+        $exists = db_get_field("SELECT COUNT(*) FROM ?:customizable_homepage_popup_banners WHERE banner_id = ?i AND lang_code = ?s", $banner_id, $lang_code);
         if ($exists) {
-            db_query("UPDATE ?:homepage_popup_banners SET ?u WHERE banner_id = ?i AND lang_code = ?s", $data, $banner_id, $lang_code);
+            db_query("UPDATE ?:customizable_homepage_popup_banners SET ?u WHERE banner_id = ?i AND lang_code = ?s", $data, $banner_id, $lang_code);
         } else {
             // Insert a new language version for an existing banner_id
             $data['banner_id'] = $banner_id; // Ensure banner_id is part of data for insert
-            db_query("INSERT INTO ?:homepage_popup_banners ?e", $data);
+            db_query("INSERT INTO ?:customizable_homepage_popup_banners ?e", $data);
         }
     }
 
     if ($banner_id) {
         // Attach image pairs (handles new uploads and existing image linking)
         // 'new_banner_image' is the typical name for the main image uploader in the form
-        fn_attach_image_pairs('new_banner_image', 'homepage_popup_banner', $banner_id, $lang_code);
+        fn_attach_image_pairs('new_banner_image', 'customizable_homepage_popup_banner', $banner_id, $lang_code);
     }
     return $banner_id;
 }
@@ -195,13 +197,13 @@ function fn_homepage_popup_update_banner($data, $banner_id, $lang_code = DESPATC
  * @param int $banner_id The ID of the banner to delete.
  * @return bool True on success, false otherwise.
  */
-function fn_homepage_popup_delete_banner($banner_id)
+function fn_customizable_homepage_popup_delete_banner($banner_id)
 {
     if (!empty($banner_id)) {
         // Delete all language versions of the banner
-        $res = db_query("DELETE FROM ?:homepage_popup_banners WHERE banner_id = ?i", $banner_id);
-        // Deletes all image pairs associated with this banner_id for the 'homepage_popup_banner' object type
-        fn_delete_image_pairs($banner_id, 'homepage_popup_banner');
+        $res = db_query("DELETE FROM ?:customizable_homepage_popup_banners WHERE banner_id = ?i", $banner_id);
+        // Deletes all image pairs associated with this banner_id for the 'customizable_homepage_popup_banner' object type
+        fn_delete_image_pairs($banner_id, 'customizable_homepage_popup_banner');
         return (bool)$res;
     }
     return false;
@@ -213,13 +215,13 @@ function fn_homepage_popup_delete_banner($banner_id)
  * @param string $lang_code Language code (typically CART_LANGUAGE for storefront).
  * @return array An array of active banners.
  */
-function fn_homepage_popup_get_active_banners($lang_code = CART_LANGUAGE)
+function fn_customizable_homepage_popup_get_active_banners($lang_code = CART_LANGUAGE)
 {
     $banners_data = db_get_array(
-        "SELECT * FROM ?:homepage_popup_banners WHERE status = 'A' AND lang_code = ?s ORDER BY position ASC", $lang_code
+        "SELECT * FROM ?:customizable_homepage_popup_banners WHERE status = 'A' AND lang_code = ?s ORDER BY position ASC", $lang_code
     );
     foreach ($banners_data as &$banner) {
-        $banner['main_pair'] = fn_get_image_pairs($banner['banner_id'], 'homepage_popup_banner', 'M', true, true, $lang_code);
+        $banner['main_pair'] = fn_get_image_pairs($banner['banner_id'], 'customizable_homepage_popup_banner', 'M', true, true, $lang_code);
     }
     return $banners_data;
 }

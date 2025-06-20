@@ -19,20 +19,20 @@ $schema['central']['marketing']['items']['homepage_popup_banners_management'] = 
     'attrs' => array(
         'class' => 'is-addon'
     ),
-    'href' => 'homepage_popup_banners.manage',
+    'href' => 'customizable_homepage_popup_banners.manage',
     'position' => 150, // Example position, adjust as needed
-    'title' => __('homepage_popup.marketing_menu_title'),
-    'permissions' => 'manage_homepage_popup_banners' // Explicitly state required permission
+    'title' => __('customizable_homepage_popup.marketing_menu_title'),
+    'permissions' => 'manage_customizable_homepage_popup_banners' // Explicitly state required permission
 );
 
 // Direct link to Addon Settings under "Add-ons -> Manage Add-ons" gear icon
-$schema['central']['addons']['items']['manage_addons']['subitems']['homepage_popup_addon_settings'] = array(
+$schema['central']['addons']['items']['manage_addons']['subitems']['customizable_homepage_popup_addon_settings'] = array(
     'attrs' => array(
         'class' => 'is-addon'
     ),
-    'href' => 'addons.update?addon=homepage_popup',
+    'href' => 'addons.update?addon=customizable_homepage_popup',
     'position' => 100, // Position among other addon settings links
-    'title' => __('homepage_popup.addon_name') // Uses the addon's name as the link title
+    'title' => __('customizable_homepage_popup.addon_name') // Uses the addon's name as the link title
 );
 
 return $schema;

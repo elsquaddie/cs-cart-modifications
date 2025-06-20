@@ -1,5 +1,5 @@
 {capture name="mainbox"}
-    <form action="{""|fn_url}" method="post" name="homepage_popup_banner_update_form" enctype="multipart/form-data" class="form-horizontal form-edit">
+    <form action="{""|fn_url}" method="post" name="customizable_homepage_popup_banner_update_form" enctype="multipart/form-data" class="form-horizontal form-edit">
         <input type="hidden" name="banner_id" value="{$banner_data.banner_id|default:0}" />
 
         <div class="tabs cm-j-tabs">
@@ -24,7 +24,7 @@
                     </div>
                 </div>
 
-                {include file="common/image_uploader.tpl" image_name="new_banner_image" image_object_type="homepage_popup_banner" image_pair=$banner_data.main_pair image_object_id=$banner_data.banner_id|default:0 image_title=__("image")}
+                {include file="common/image_uploader.tpl" image_name="new_banner_image" image_object_type="customizable_homepage_popup_banner" image_pair=$banner_data.main_pair image_object_id=$banner_data.banner_id|default:0 image_title=__("image")}
 
                 <div class="control-group">
                     <label class="control-label" for="elm_banner_position">{__("position_short")}:</label>
@@ -46,8 +46,8 @@
         </div>
 
         {assign var="but_role" value="submit-link"}
-        {assign var="but_name" value="dispatch[homepage_popup_banners.update]"}
-        {assign var="but_target_form" value="homepage_popup_banner_update_form"}
+        {assign var="but_name" value="dispatch[customizable_homepage_popup_banners.update]"}
+        {assign var="but_target_form" value="customizable_homepage_popup_banner_update_form"}
         {capture name="buttons_block"}
             {include file="buttons/save_cancel.tpl" but_name=$but_name cancel_action="close" save=$banner_data.banner_id}
         {/capture}
@@ -56,6 +56,6 @@
 {if $banner_data.banner_id}
     {assign var="mainbox_title_text" value=$banner_data.title}
 {else}
-    {assign var="mainbox_title_text" value=__("homepage_popup.add_banner_button")}
+    {assign var="mainbox_title_text" value=__("customizable_homepage_popup.add_banner_button")}
 {/if}
 {include file="common/mainbox.tpl" title=$mainbox_title_text content=$smarty.capture.mainbox buttons=$smarty.capture.buttons_block}
