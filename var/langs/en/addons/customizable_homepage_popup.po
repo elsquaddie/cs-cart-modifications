@@ -1,157 +1,21 @@
-# Language: English
-# Add-on: customizable_homepage_popup
-msgctxt "customizable_homepage_popup.popup_title"
-msgid "Popup Title"
-msgstr "Popup Title"
+msgid ""
+msgstr ""
+"Project-Id-Version: Customizable Homepage Popup\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgctxt "customizable_homepage_popup.popup_text_placeholder"
-msgid "This is the popup content."
-msgstr "This is the popup content."
-
-msgctxt "customizable_homepage_popup.close_button"
-msgid "Close"
-msgstr "Close"
-
-msgctxt "customizable_homepage_popup.settings.tab_general"
-msgid "General Settings"
-msgstr "General Settings"
-
-msgctxt "customizable_homepage_popup.settings.popup_width"
-msgid "Popup Width"
-msgstr "Popup Width"
-
-msgctxt "customizable_homepage_popup.settings.tooltip.popup_width"
-msgid "Width of the popup. Can be in pixels (e.g., 600) or percentage (e.g., 80%)."
-msgstr "Width of the popup. Can be in pixels (e.g., 600) or percentage (e.g., 80%)."
-
-msgctxt "customizable_homepage_popup.settings.popup_height"
-msgid "Popup Height"
-msgstr "Popup Height"
-
-msgctxt "customizable_homepage_popup.settings.tooltip.popup_height"
-msgid "Height of the popup. Can be in pixels (e.g., 400) or percentage (e.g., 50%)."
-msgstr "Height of the popup. Can be in pixels (e.g., 400) or percentage (e.g., 50%)."
-
-msgctxt "customizable_homepage_popup.settings.enable_background_dimming"
-msgid "Enable Background Dimming"
-msgstr "Enable Background Dimming"
-
-msgctxt "customizable_homepage_popup.settings.tooltip.enable_background_dimming"
-msgid "Dims the page background when the popup is active."
-msgstr "Dims the page background when the popup is active."
-
-msgctxt "customizable_homepage_popup.popup_title_default"
-msgid "Welcome!"
-msgstr "Welcome!"
-
-msgctxt "customizable_homepage_popup.addon_name"
-msgid "Customizable Homepage Popup"
+msgid "customizable_homepage_popup.addon_name"
 msgstr "Customizable Homepage Popup"
 
-msgctxt "customizable_homepage_popup.addon_description"
-msgid "Displays a highly configurable popup window on the homepage with user-defined content, delay, and display frequency."
-msgstr "Displays a highly configurable popup window on the homepage with user-defined content, delay, and display frequency."
+msgid "customizable_homepage_popup.addon_description"
+msgstr "Displays a configurable popup on the homepage."
 
-msgctxt "customizable_homepage_popup.manage_banners_button"
-msgid "Manage Banners"
-msgstr "Manage Banners"
-
-msgctxt "customizable_homepage_popup.add_banner_button"
-msgid "Add Banner"
-msgstr "Add Banner"
-
-msgctxt "customizable_homepage_popup.manage_banners_title"
-msgid "Manage Popup Banners"
-msgstr "Manage Popup Banners"
-
-msgctxt "customizable_homepage_popup.banner_saved_successfully"
-msgid "Banner saved successfully."
-msgstr "Banner saved successfully."
-
-msgctxt "customizable_homepage_popup.banner_save_error"
-msgid "Error saving banner."
-msgstr "Error saving banner."
-
-msgctxt "customizable_homepage_popup.banners_deleted_successfully"
-msgid "%d banners deleted successfully."
-msgstr "%d banners deleted successfully."
-
-msgctxt "customizable_homepage_popup.banner_deleted_successfully"
-msgid "Banner deleted successfully."
-msgstr "Banner deleted successfully."
-
-msgctxt "customizable_homepage_popup.marketing_menu_title"
-msgid "Homepage Popups"
-msgstr "Homepage Popups"
-
-msgctxt "customizable_homepage_popup.previous_slide"
-msgid "Previous"
-msgstr "Previous"
-
-msgctxt "customizable_homepage_popup.next_slide"
-msgid "Next"
-msgstr "Next"
-
-msgctxt "customizable_homepage_popup.settings.tab_banner_management"
-msgid "Banner Management"
-msgstr "Banner Management"
-
-msgctxt "customizable_homepage_popup.settings.delay"
-msgid "Display Delay"
-msgstr "Display Delay"
-
-msgctxt "customizable_homepage_popup.settings.tooltip.delay"
-msgid "Time in seconds before the popup appears after the page loads."
-msgstr "Time in seconds before the popup appears after the page loads."
-
-msgctxt "customizable_homepage_popup.settings.seconds"
-msgid "sec"
-msgstr "sec"
-
-msgctxt "customizable_homepage_popup.settings.animation"
-msgid "Entrance Animation"
-msgstr "Entrance Animation"
-
-msgctxt "customizable_homepage_popup.settings.tooltip.animation"
-msgid "Select the animation effect for the popup's appearance."
-msgstr "Select the animation effect for the popup's appearance."
-
-msgctxt "customizable_homepage_popup.settings.animation.none"
-msgid "None"
-msgstr "None"
-
-msgctxt "customizable_homepage_popup.settings.animation.fade"
-msgid "Fade In"
-msgstr "Fade In"
-
-msgctxt "customizable_homepage_popup.settings.animation.slide_from_top"
-msgid "Slide From Top"
-msgstr "Slide From Top"
-
-msgctxt "customizable_homepage_popup.settings.animation.slide_from_bottom"
-msgid "Slide From Bottom"
-msgstr "Slide From Bottom"
-
-msgctxt "customizable_homepage_popup.settings.frequency"
-msgid "Popup Frequency"
-msgstr "Popup Frequency"
-
-msgctxt "customizable_homepage_popup.settings.tooltip.frequency"
-msgid "How often the popup should be shown to a user."
-msgstr "How often the popup should be shown to a user."
-
-msgctxt "customizable_homepage_popup.settings.frequency.once_per_session"
-msgid "Once per session"
-msgstr "Once per session"
-
-msgctxt "customizable_homepage_popup.settings.frequency.every_visit"
-msgid "Every visit"
-msgstr "Every visit"
-
-msgctxt "customizable_homepage_popup.settings.frequency.once_daily"
-msgid "Once daily (after closing)"
-msgstr "Once daily (after closing)"
-
-msgctxt "customizable_homepage_popup.no_active_banners"
-msgid "No active banners to display at the moment."
-msgstr "No active banners to display at the moment."
+msgid "customizable_homepage_popup.settings.general_tab"
+msgstr "General"
